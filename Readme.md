@@ -22,14 +22,19 @@ cluster:
     - vcf.gz
     - fastq.gz
 ```
+
 Required host meta:
 - `paths`
 - also `host`, `user`, `paths` for remote
+
 Optional host meta: `aliases`, `port`, `key`, `exts`
+
 If host-header is `local` or hostname is in `aliases` then local parsing applied.
+
 Config is ignored if CLI/API `paths` provided (forced local parse).
 
 # CLI
+```
 ./filemeta.py [-h] [-p PATHS [PATHS ...]] [-e EXTS [EXTS ...]] [-o OUTPUT]
 
 options:
@@ -39,6 +44,7 @@ options:
   -e, --exts EXTS [EXTS ...]
                         Specified file extensions to parse. (default: None)
   -o, --output OUTPUT   Output CSV path (default: filemeta.csv)
+```
 
 # API
 ```
