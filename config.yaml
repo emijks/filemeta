@@ -1,0 +1,10 @@
+cluster:
+  aliases: ['calc']
+  host: calc.cod.phystech.edu
+  user: safin.ef
+  key: ~/.ssh/id_ed25519
+  paths:
+    - /slowhome/common/LGI/CSP
+  exts:
+    - vcf.gz
+    - fastq.gz
