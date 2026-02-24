@@ -1,10 +1,32 @@
-cluster:
-  aliases: ['calc']
-  host: calc.cod.phystech.edu
-  user: safin.ef
-  key: ~/.ssh/id_ed25519
-  paths:
-    - /slowhome/common/LGI/CSP
-  exts:
-    - vcf.gz
-    - fastq.gz
+hosts:
+  cluster:
+    aliases: ['calc']
+    host: calc.cod.phystech.edu
+    user: safin.ef
+  sc2:
+    aliases: ['gl-sc2']
+    host: 93.175.29.178
+    port: 22244
+    user: emijks
+  oapp:
+    host: 'oapp.genlab.llc'
+    user: 'emijks'
+
+database:
+  creds: credentials.json
+  table: Filemeta
+  proxy: oapp
+
+paths:
+  cluster:
+    - path: /slowhome/common/LGI/CSP
+      exts: ['.fastq.gz', '.fq.gz', '.vcf.gz']
+      tag: CSP
+  # sc2:
+  #   - path: /primary/data/seqfacility/fastq
+  #     exts: ['.fastq.gz', '.fq.gz', '.vcf.gz']
+  #     tag: SEQ
+
+ftypes:
+  fastq: ['.fq.gz', '.fastq.gz']
+  vcf: ['.vcf.gz', '.vcf']

@@ -1,3 +1,6 @@
-paramiko
+paramiko<4
+sshtunnel
 pandas
 pyyaml
+psycopg2
+sqlalchemy
