@@ -317,7 +317,7 @@ if __name__ == '__main__':
     arparser.add_argument('-p', '--paths', nargs='+', help='Local paths to parse. Hosts and paths config ignored then.')
     arparser.add_argument('-e', '--exts', nargs='+', help='Specified file extensions to parse.')
     arparser.add_argument('-m', '--md5', help='checksum md5 fpath')
-    arparser.add_argument('-o', '--output', help='Output CSV path')
+    arparser.add_argument('-o', '--output', help='Output TSV path')
     arparser.add_argument('-E', '--export', action='store_true', help='Export to PostgreSQL')
     args = arparser.parse_args()
 
@@ -331,7 +331,7 @@ if __name__ == '__main__':
     if args.md5:
         try:
             print(f'Updating md5 checksums by "{args.md5}" ...')
-            md5 = pd.read_csv(args.md5, sep='  ', header=None, names=['md5', 'fpath'], engine='python')
+            md5 = pd.read_csv(args.md5, sep='\t', header=None, names=['md5', 'fpath'], engine='python')
             filemeta = filemeta.merge(md5, how='left', on='fpath')
         except Exception as e:
             print(f'Failed to parse and update checksums: {repr(e)}')
@@ -345,5 +345,5 @@ if __name__ == '__main__':
         tablename = config['database']['table']
         print(f'Exporting to PostgreSQL table "{tablename}" ...')
         with database_connection(config['database'], hostmanager) as conn:
-            filemeta.to_sql(tablename, con=conn, if_exists="append", index=False)
+            filemeta.to_sql(tablename, con=conn, if_exists="delete_rows", index=False)
             print(f'Exported to PostgreSQL table "{tablename}".')

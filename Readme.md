@@ -77,8 +77,10 @@ options:
                         Local paths to parse. Hosts and paths config ignored then. (default: None)
   -e EXTS [EXTS ...], --exts EXTS [EXTS ...]
                         Specified file extensions to parse. (default: None)
-  -m MD5, --md5 MD5     checksum md5 fpath (default: None)
+  -m MD5, --md5 MD5     Checksum md5 TSV fpath (default: None)
   -o OUTPUT, --output OUTPUT
-                        Output CSV path (default: None)
+                        Output TSV path (default: None)
   -E, --export          Export to PostgreSQL (default: False)
 ```
+
+The MD5 checksum TSV file is expected to contain two columns without a header: checksum and filepath.
